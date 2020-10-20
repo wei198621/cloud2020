@@ -58,7 +58,11 @@
             <version>${springboot.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.atguigu.springcloud</groupId>
+            <artifactId>cloud-api-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
 
     </dependencies>

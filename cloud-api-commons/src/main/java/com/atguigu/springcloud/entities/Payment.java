@@ -4,17 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @author leowei
- * @date 2020/10/20  - 0:07
+ * @date 2020/10/20  - 23:14
  */
-
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class CommonResult<T> {
-    private Integer code;
-    private String message;
-    private T data;
-
+@NoArgsConstructor
+public class Payment implements Serializable {
+    private Long id;
+    private String serial;
 }
