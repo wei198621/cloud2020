@@ -32,7 +32,7 @@ public class PaymentController {
     @GetMapping("/get/{id}")
     public CommonResult getPaymentById(@PathVariable("id") Long id){
         Payment payment = paymentService.getPaymentById(id);
-        log.info("get/"+ id);
+      //  log.info("get/"+ id);
        // log.info("***查询结果：" + payment);
         if(payment!=null){
             return new CommonResult(200,"查询数据成功l9999，serverport:"+ SERVER_PORT,payment);
@@ -57,7 +57,7 @@ public class PaymentController {
     //此接口是直接调用的
     @PostMapping("/create4Direct")
     public CommonResult create4Direct(Payment payment){
-        log.info("create4Direct/  id is "+ payment.getId() + " __ serial: "+ payment.getSerial());
+     //   log.info("create4Direct/  id is "+ payment.getId() + " __ serial: "+ payment.getSerial());
         int result = paymentService.create(payment);
         if(result>0){
             return new CommonResult(200,""+SERVER_PORT,result);
@@ -71,7 +71,7 @@ public class PaymentController {
 
     @PostMapping("/create")
     public CommonResult create(@RequestBody Payment payment){
-        log.info("create/  id is "+ payment.getId() + " __ serial: "+ payment.getSerial());
+        //log.info("create/  id is "+ payment.getId() + " __ serial: "+ payment.getSerial());
         int result = paymentService.create(payment);
         if(result>0){
             return new CommonResult(200,""+SERVER_PORT,result);

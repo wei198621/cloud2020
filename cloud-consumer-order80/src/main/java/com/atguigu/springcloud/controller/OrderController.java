@@ -33,14 +33,14 @@ public class OrderController {
 
     @GetMapping("/consumer/payment/get/{id}")
     public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id){
-        log.info("/consumer/payment/get/"+ id);
+       // log.info("/consumer/payment/get/"+ id);
         return restTemplate.getForObject(PAYMENT_URL+"/payment/get/"+id,CommonResult.class,id);
     }
 
     @PostMapping("/consumer/payment/create")
     public CommonResult<Payment> create(Payment payment){
 
-        log.info("/consumer/payment/create  serial  is "+ payment.getSerial()+ " __ id is "+ payment.getId());
+        //log.info("/consumer/payment/create  serial  is "+ payment.getSerial()+ " __ id is "+ payment.getId());
         return restTemplate.postForObject(PAYMENT_URL+"/payment/create",payment,CommonResult.class);
     }
 
