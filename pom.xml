@@ -11,6 +11,7 @@
   <modules>
     <module>cloud-provider-payment8001</module>
     <module>cloud-api-commons</module>
+    <module>cloud-consumer-order80</module>
   </modules>
 
 
@@ -102,9 +103,12 @@
 
   <build>
     <plugins>
+
+      <!--热部署需要用到-->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>2.1.2.RELEASE</version>
         <configuration>
           <fork>true</fork>
           <addResources>true</addResources>

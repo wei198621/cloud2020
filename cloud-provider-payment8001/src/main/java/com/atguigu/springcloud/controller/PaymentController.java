@@ -32,16 +32,46 @@ public class PaymentController {
     @GetMapping("/get/{id}")
     public CommonResult getPaymentById(@PathVariable("id") Long id){
         Payment payment = paymentService.getPaymentById(id);
+        log.info("get/"+ id);
        // log.info("***查询结果：" + payment);
         if(payment!=null){
-            return new CommonResult(200,"查询数据成功，serverport:"+ SERVER_PORT,payment);
+            return new CommonResult(200,"查询数据成功l9999，serverport:"+ SERVER_PORT,payment);
         }else{
-            return new CommonResult(444,"没有对应记录",null);
+            return new CommonResult(444,"没有对应记录55555",null);
         }
     }
 
+    //限制 只可以获取Payment 类型的 数据
+    @GetMapping("/get2/{id}")
+    public CommonResult<Payment> getPaymentById2(@PathVariable("id") Long id){
+        Payment payment = paymentService.getPaymentById(id);
+        // log.info("***查询结果：" + payment);
+        if(payment!=null){
+            return new CommonResult(200,"查询数据成功l9999，serverport:"+ SERVER_PORT,payment);
+        }else{
+            return new CommonResult(444,"没有对应记录55555",null);
+        }
+    }
+
+    //直接通过postman 调用不需要用@RequestBody 作为前缀
+    //此接口是直接调用的
+    @PostMapping("/create4Direct")
+    public CommonResult create4Direct(Payment payment){
+        log.info("create4Direct/  id is "+ payment.getId() + " __ serial: "+ payment.getSerial());
+        int result = paymentService.create(payment);
+        if(result>0){
+            return new CommonResult(200,""+SERVER_PORT,result);
+        }else{
+            return new CommonResult(444,"",null);
+        }
+    }
+
+
+    // 此接口服务提供接口8001  ,   供 80接口调用，80接口过来后 需要使用  @RequestBody
+
     @PostMapping("/create")
     public CommonResult create(@RequestBody Payment payment){
+        log.info("create/  id is "+ payment.getId() + " __ serial: "+ payment.getSerial());
         int result = paymentService.create(payment);
         if(result>0){
             return new CommonResult(200,""+SERVER_PORT,result);
