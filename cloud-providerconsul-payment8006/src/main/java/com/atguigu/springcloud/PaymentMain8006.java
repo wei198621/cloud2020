@@ -3,18 +3,17 @@ package com.atguigu.springcloud;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
- * @author leowei
- * @date 2020/10/19  - 23:40
+ * Author: tz_wl
+ * Date: 2020/10/23 11:35
+ * Content:
  */
 
 @SpringBootApplication
-@EnableEurekaClient
-@EnableDiscoveryClient        //Eureka 服务发现（暴露） step 03
-public class PaymentMain8001 {
+@EnableDiscoveryClient
+public class PaymentMain8006 {
     public static void main(String[] args) {
-        SpringApplication.run(PaymentMain8001.class,args);
+        SpringApplication.run(PaymentMain8006.class,args);
     }
 }

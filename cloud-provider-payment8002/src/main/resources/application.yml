@@ -1,9 +1,9 @@
 server:
-  port: 8001
+  port: 8002
 
 spring:
   application:
-    name: cloud-payment-service   #对外暴露的名称是 cloud-payment-service (等于localhost:8001) order可以访问它
+    name: cloud-payment-service        #对外暴露的名称是 cloud-payment-service (等于localhost:8001) order可以访问它
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver  # com.mysql.cj.jdbc.Driver
@@ -24,15 +24,11 @@ eureka:
     register-with-eureka: true #表示向注册中心注册自己 默认为true
     fetch-registry: true #是否从EurekaServer抓取已有的注册信息，默认为true,单节点无所谓,集群必须设置为true才能配合ribbon使用负载均衡
     service-url:
-       defaultZone: http://localhost:7001/eureka/ # 入驻地址 单机版
-      #defaultZone: http://eureka7001.com:7001/eureka/, http://eureka7002.com:7002/eureka/        # 入驻地址 集群版
+      # defaultZone: http://localhost:7001/eureka/ # 入驻地址 单机版
+      defaultZone: http://eureka7001.com:7001/eureka/, http://eureka7002.com:7002/eureka/ # 入驻地址 集群版
   instance:
-    instance-id: payment8001      #更改默认主机名 WEILEI:cloud-payment-service:8001 为 payment8001
-    prefer-ip-address: true                     #访问路径显示IP
-    lease-renewal-interval-in-seconds:  1       #客户端向服务器端 发送心跳间隔 单位秒 （默认30秒）
-    lease-expiration-duration-in-seconds: 2     #eureka服务端（7001）收到最后一次心跳后等待的上限时间，超时将剔除服务（默认90秒）
-
-
+    instance-id: payment8002      #更改默认主机名 WEILEI:cloud-payment-service:8002 为 payment8002
+    prefer-ip-address: true       #访问路径显示IP
 
 
 

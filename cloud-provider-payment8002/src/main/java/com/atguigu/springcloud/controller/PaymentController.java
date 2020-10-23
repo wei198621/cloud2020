@@ -6,17 +6,12 @@ import com.atguigu.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.netflix.eureka.EurekaDiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sun.misc.FormattedFloatingDecimal;
-
-import java.util.List;
 
 /**
  * @author leowei
@@ -33,11 +28,6 @@ public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
-
-
-    //Eureka 服务发现（暴露） step 01
-    @Autowired
-    private EurekaDiscoveryClient discoveryClient;
 
     @GetMapping("/get/{id}")
     public CommonResult getPaymentById(@PathVariable("id") Long id){
@@ -89,20 +79,6 @@ public class PaymentController {
             return new CommonResult(444,"插入数据库失败",null);
         }
     }
-
-    //Eureka 服务发现（暴露） step 02
-    @GetMapping("/discovery")
-    public void discovery(){
-        List<String> services = discoveryClient.getServices();
-        for(String element : services){
-            log.info("element:\t"+ element);
-        }
-        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
-        for (ServiceInstance instance : instances) {
-            log.info(instance.getServiceId()+"\t"+instance.getHost()+"\t"+ instance.getPort()+"\t"+instance.getUri());
-        }
-    }
-
 
 
 
