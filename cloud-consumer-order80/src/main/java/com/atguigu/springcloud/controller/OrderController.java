@@ -4,6 +4,7 @@ import cn.hutool.Hutool;
 import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,10 @@ public class OrderController {
     @Resource
     private RestTemplate restTemplate;
 
+    //getForObject 返回的直接是json字符串
+    //getForEntity 放回的数据 ResponseEntity 封装了json字符串  带有Status等数据 ，更加细粒度
+
+    //***************************   getForObject写法  *****************************************
 
     @GetMapping("/consumer/payment/get/{id}")
     public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id){
@@ -40,13 +45,35 @@ public class OrderController {
 
     @PostMapping("/consumer/payment/create")
     public CommonResult<Payment> create(Payment payment){
-
         //log.info("/consumer/payment/create  serial  is "+ payment.getSerial()+ " __ id is "+ payment.getId());
         return restTemplate.postForObject(PAYMENT_URL+"/payment/create",payment,CommonResult.class);
     }
 
 
+    //***************************  getForEntity写法   *****************************************
 
+    @GetMapping("/consumer/payment/getEntity/{id}")
+    public CommonResult<Payment> getPaymentById2(@PathVariable("id") Long id){
+        ResponseEntity<CommonResult> result = restTemplate.getForEntity(PAYMENT_URL + "/payment/get/" + id, CommonResult.class, id);
+        if(result.getStatusCode().is2xxSuccessful()){
+            return result.getBody();
+        }else{
+            return new CommonResult<Payment>(444,"查询操作失败");
+        }
+    }
+
+    @PostMapping("/consumer/payment/createEntity")
+    public CommonResult<Payment> create2(Payment payment){
+        ResponseEntity<CommonResult> result = restTemplate.postForEntity(PAYMENT_URL + "/payment/create", payment, CommonResult.class);
+        if(result.getStatusCode().is2xxSuccessful()){
+            return result.getBody();
+        }else{
+            return  new CommonResult<Payment>(444,"保存操作失败");
+        }
+    }
+
+
+    //*********************
 
 
 }
