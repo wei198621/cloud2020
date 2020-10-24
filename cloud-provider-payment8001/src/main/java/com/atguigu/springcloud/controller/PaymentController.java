@@ -95,15 +95,20 @@ public class PaymentController {
     public void discovery(){
         List<String> services = discoveryClient.getServices();
         for(String element : services){
-            log.info("element:\t"+ element);
+           // log.info("element:\t"+ element);
         }
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
         for (ServiceInstance instance : instances) {
-            log.info(instance.getServiceId()+"\t"+instance.getHost()+"\t"+ instance.getPort()+"\t"+instance.getUri());
+           // log.info(instance.getServiceId()+"\t"+instance.getHost()+"\t"+ instance.getPort()+"\t"+instance.getUri());
         }
     }
 
 
+
+    @GetMapping(value = "/lb")
+    public String getPaymentLB(){
+        return SERVER_PORT;
+    }
 
 
 

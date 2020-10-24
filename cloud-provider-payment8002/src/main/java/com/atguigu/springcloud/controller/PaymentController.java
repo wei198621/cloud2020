@@ -81,6 +81,12 @@ public class PaymentController {
     }
 
 
+    @GetMapping(value = "/lb")
+    public String getPaymentLB(){
+        return SERVER_PORT;
+    }
+
+
 
 
 

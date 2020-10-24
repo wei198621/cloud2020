@@ -15,9 +15,8 @@ public class ApplicationContextConfig {
 
     //经过这不操作  spring 容器就会有   RestTemplate对象了
     @Bean
-    @LoadBalanced
+    //@LoadBalanced    //之前是官方的负载均衡，现在需要人工手写 将其注释掉
     //负载均衡 配置了这个 80 访问 paymentService 就会有个(默认)轮询机制，循环选择8001  8002 ，也可以在主函数中配置
-    //@RibbonClient(name = "CLOUD-PAYMENT-SERVICE",configuration = MySelfRule.class)  改变 访问策略
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
     }
