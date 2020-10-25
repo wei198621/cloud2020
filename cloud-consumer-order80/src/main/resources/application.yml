@@ -1,6 +1,8 @@
+#访问端口号
 server:
-  port: 801
+  port: 80
 
+#应用名称
 spring:
   application:
     name: cloud-order-service    #以此名称向eureka注册
