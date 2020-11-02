@@ -1,0 +1,22 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          #uri: git@github.com:wei198621/spingcloud-config.git   #  这种方法无法正常访问
+          skipSslValidation: true # 跳过ssl认证
+          uri: https://github.com/wei198621/spingcloud-config.git
+          search-paths:
+            - com.springcloud-config
+      label: main    #   注意示例是 master
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
