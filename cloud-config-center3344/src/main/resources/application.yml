@@ -15,8 +15,22 @@ spring:
             - com.springcloud-config
       label: main    #   注意示例是 master
 
+  # 注意空两格  是 spring.rabbitmq
+  # 配置中心服务端增加消息总线的支持
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   client:
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka
+
+# 暴露bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"
