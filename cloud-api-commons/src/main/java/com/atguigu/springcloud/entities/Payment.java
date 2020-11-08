@@ -11,9 +11,12 @@ import java.io.Serializable;
  * @date 2020/10/20  - 23:14
  */
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 public class Payment implements Serializable {
     private Long id;
     private String serial;
+
+    public Payment(int i, String s) {
+    }
 }

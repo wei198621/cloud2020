@@ -30,9 +30,9 @@ import java.util.List;
 @Slf4j
 public class OrderController {
 
-    //private final static String PAYMENT_URL="http://localhost:8001";  //非集群方式
-    //集群  将ip:port 改为服务名 ,服务名可以是第一个对多个 ip:port
-    private final static String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
+    private final static String PAYMENT_URL="http://localhost:8001";  //非集群方式
+    //集群  将ip:port 改为服务名 ,服务名可以是一个对多个 ip:port
+    //private final static String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 
     //注入并实例化   Autowired 也可以
     @Resource
@@ -100,5 +100,12 @@ public class OrderController {
         URI uri = serviceInstance.getUri();
 
         return restTemplate.getForObject(uri + "/payment/lb", String.class);
+    }
+
+
+
+    @GetMapping("/consumer/payment/zipkin")
+    public String paymentZipkin() {
+        return restTemplate.getForObject(PAYMENT_URL + "/payment/zipkin", String.class);
     }
 }

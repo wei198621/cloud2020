@@ -11,6 +11,11 @@ spring:
     username: root
     #公司  123456  个人  root
     password: root
+  zipkin:
+    base-url: http://localhost:9411         # 将8001 注册到zipkin上面 端口号 9411
+  sleuth:
+    sampler:
+      probability: 1    #采样频率
 
 #mybatis 配置
 mybatis:
@@ -23,8 +28,8 @@ eureka:
     register-with-eureka: true #表示向注册中心注册自己 默认为true
     fetch-registry: true #是否从EurekaServer抓取已有的注册信息，默认为true,单节点无所谓,集群必须设置为true才能配合ribbon使用负载均衡
     service-url:
-      #defaultZone: http://localhost:7001/eureka/ # 入驻地址 单机版
-      defaultZone: http://eureka7001.com:7001/eureka/, http://eureka7002.com:7002/eureka/        # 入驻地址 集群版
+      defaultZone: http://localhost:7001/eureka/ # 入驻地址 单机版
+      #defaultZone: http://eureka7001.com:7001/eureka/, http://eureka7002.com:7002/eureka/        # 入驻地址 集群版
   instance:
     instance-id: payment8001      #更改默认主机名 WEILEI:cloud-payment-service:8001 为 payment8001
     prefer-ip-address: true                     #访问路径显示IP

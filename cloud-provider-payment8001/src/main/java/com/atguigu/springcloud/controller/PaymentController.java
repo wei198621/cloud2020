@@ -124,4 +124,9 @@ public class PaymentController {
         return SERVER_PORT;
     }
 
+    @GetMapping("/zipkin")
+    public String paymentZipkin() {
+        return "hellp zipkin";
+    }
+
 }
