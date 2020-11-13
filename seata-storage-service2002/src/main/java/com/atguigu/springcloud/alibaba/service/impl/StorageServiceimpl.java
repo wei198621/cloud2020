@@ -20,6 +20,8 @@ public class StorageServiceimpl implements StorageService  {
 
 
 
+
+
     public void decrease(Long productId, Integer count) {
         System.out.println("库存扣减开始----");
         storageDao.decrease(productId,count);
